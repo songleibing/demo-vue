@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <body>
-
+<div id="app">
+    <input type="text" v-model="name"><br>
+    {{name}}
+</div>
 </body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            name: "hello"
+        }
+    });
+</script>
 </html>

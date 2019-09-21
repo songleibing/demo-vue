@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="app">
+    <h1>1. 双大括号表达式</h1>
+    {{msg}}<br>
+    {{msg.toUpperCase()}}<br>
+    <p v-text="html"></p>
+    <p v-html="html"></p>
+
+    <h1>2. 数据绑定</h1>
+    <img v-bind:src="imageSrc">
+    <img :src="imageSrc">
+
+    <h1>3. 事件绑定</h1>
+    <button v-on:click="sayHello('world')">hello</button>
+    <button @click="sayHello('world')">hello</button>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue",
+            html: "<a href='http://www.baidu.com'>百度</a>",
+            imageSrc: "https://cn.vuejs.org/images/logo.png"
+        },
+        methods: {
+            sayHello(name) {
+                alert("hello " + name);
+            }
+        }
+    });
+</script>
+</html>
