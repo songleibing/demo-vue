@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<style type="text/css">
+    .aClass {
+        color: red;
+        font-size: 20px;
+    }
+
+    .bClass {
+        color: blue;
+        font-size: 40px;
+    }
+</style>
+<div id="app">
+    <p :class="targetClass">Class绑定字符串</p> <br>
+    <p :class="{'aClass':isA,'bClass':isB}">Class绑定对象</p> <br>
+    <p :class="['aClass','cClass']">Class绑定数组</p> <br>
+
+    <p :style="{'color':color,'font-size':fontSize+'px'}">Style</p>
+    <button @click="change">change</button>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            targetClass: "aClass",
+            isA: true,
+            isB: false,
+            color: 'red',
+            fontSize: 20
+        },
+        methods: {
+            change() {
+                this.targetClass = "bClass"
+                this.isA = false
+                this.isB = true
+                this.color = 'blue'
+                this.fontSize = 40
+            }
+        }
+    });
+</script>
+</html>
