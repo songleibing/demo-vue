@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤排序</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="app">
+    <input type="text" v-model="searchName">
+    <ul>
+        <li v-for="(person,index) in filterPersons">
+            {{index}} -- {{person.name}} -- {{person.age}}
+        </li>
+    </ul>
+
+    <button @click="changeSortType(1)">年龄升序</button>
+    <button @click="changeSortType(2)">年龄降序</button>
+    <button @click="changeSortType(0)">原始顺序</button>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            searchName: "",
+            sortType: 0,
+            persons: [
+                {name: "user1", age: 11},
+                {name: "user2", age: 12},
+                {name: "user3", age: 13},
+                {name: "user4", age: 14}
+            ]
+        },
+        computed: {
+            filterPersons() {
+                let {searchName, sortType, persons} = this
+                let result = persons.filter(person => person.name.indexOf(searchName) !== -1);
+                if (sortType !== 0) {
+                    result.sort((person1, person2) => ((sortType === 1) ? (person1.age - person2.age) : (person2.age - person1.age)))
+                }
+                return result
+            }
+        },
+        methods: {
+            changeSortType(sortType) {
+                this.sortType = sortType;
+            }
+        }
+    });
+</script>
+</html>
