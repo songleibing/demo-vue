@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="app">
+    <table>
+        <tr v-for="(person,index) in persons" :key="index">
+            <td>{{index}}</td>
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td>
+                <button @click="deletePerson(index)">delete</button>
+            </td>
+            <td>
+                <button @click="updatePerson(index)">update</button>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr v-for="(value,key) in persons[0]" :key="key">
+            <td>{{value}}</td>
+            <td>{{key}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            persons: [
+                {name: "user1", age: 11},
+                {name: "user2", age: 12},
+                {name: "user3", age: 13},
+                {name: "user4", age: 14}
+            ]
+        },
+        methods: {
+            deletePerson(index) {
+                this.persons.splice(index, 1);
+            },
+            updatePerson(index) {
+                this.persons.splice(index, 1, {name: "user", age: 10});
+            }
+        }
+    })
+</script>
+</html>
