@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="app">
+    <!--if 和 else之间不能出现其他标签-->
+    <div v-if="ok">成功</div>
+    <div v-else>失败</div>
+
+    <div v-show="ok">成功</div>
+    <div v-show="!ok">失败</div>
+
+    <button @click="ok=!ok">change</button>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            ok: true
+        }
+    });
+</script>
+</html>
