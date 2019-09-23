@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="app">
+    <h1>1.绑定监听</h1>
+    <button @click="test1">test1</button>
+    <button @click="test2('garen')">test2</button>
+    <button @click="test3">test3</button>
+    <button @click="test4('garen',$event)">test4</button>
+
+    <h1>2.事件修饰符</h1>
+    <div style="width: 200px;height: 200px;background: red" @click="out">
+        <div style="width: 100px;height: 100px;background: blue" @click.stop="inner"></div>
+    </div>
+
+    <a href="http://www.baidu.com" @click.prevent="href">baidu</a>
+
+    <h1>3.按键修饰符</h1>
+    <input type="text" @keyup="keyup1">
+    <input type="text" @keyup.13="keyup2">
+    <input type="text" @keyup.enter="keyup2">
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+            test1() {
+                alert("test1");
+            },
+            test2(name) {
+                alert(name);
+            },
+            test3(event) {
+                alert(event.target.innerHTML);
+            },
+            test4(name, event) {
+                alert(name + "--" + event.target.innerHTML);
+            },
+            out() {
+                alert("out");
+            },
+            inner() {
+                alert("inner");
+                // event.stopPropagation(); 阻止事件冒泡
+            },
+            href() {
+                alert("href");
+                // event.preventDefault(); 阻止事件默认行为
+            },
+            keyup1(event) {
+                if (event.keyCode === 13) {
+                    alert(event.target.value)
+                }
+            },
+            keyup2(event) {
+                alert(event.target.value)
+            }
+        }
+    });
+</script>
+</html>
