@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue生命周期</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="app">
+    <button @click="destroyVue">destroy vue</button>
+    <br>
+    <p v-show="isShow">
+        hello word
+    </p>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            isShow: true
+        },
+        methods: {
+            destroyVue() {
+                this.$destroy();
+            }
+        },
+        mounted() {
+            this.intervalId = setInterval(() => {
+                this.isShow = !this.isShow;
+            }, 1000);
+        },
+        beforeDestroy() {
+            clearInterval(this.intervalId);
+        }
+    })
+</script>
+</html>
