@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <title>vue动画</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.js"></script>
 <body>
-
+<div id="app">
+    默认格式：{{date | dateFormat}} <br>
+    年月日：{{date | dateFormat("YYYY-MM-DD")}} <br>
+    时分秒：{{date | dateFormat("HH:mm:ss")}} <br>
+</div>
 </body>
+<script type="text/javascript">
+    Vue.filter("dateFormat", function (value, formater) {
+        return moment(value).format(formater || "YYYY-MM-DD HH:mm:ss");
+    });
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            date: new Date()
+        }
+    })
+</script>
 </html>
