@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="test1">
+    <p v-upper-text="msg1"></p>
+    <p v-lower-text="msg1"></p>
+</div>
+
+<div id="test2">
+    <p v-upper-text="msg2"></p>
+    <p v-lower-text="msg2"></p>
+</div>
+</body>
+<script type="text/javascript">
+    // 注册全局指令
+    Vue.directive("upper-text", function (el, binding) {
+        el.innerHTML = binding.value.toUpperCase();
+    });
+
+    const vm1 = new Vue({
+        el: "#test1",
+        data: {
+            msg1: "Hello World"
+        },
+        // 注册局部指令
+        directives: {
+            "lower-text": function (el, binding) {
+                el.innerHTML = binding.value.toLowerCase();
+            }
+        }
+    });
+
+    const vm2 = new Vue({
+        el: "#test2",
+        data: {
+            msg2: "Hello World"
+        }
+    });
+</script>
+</html>

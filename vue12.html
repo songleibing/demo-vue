@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>过滤器</title>
+    <title>内置指令</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <body>
-
+<style>
+    <!--
+    vue指令在渲染完成后，会从标签属性中移除
+    v-cloak 属性存在时，代表标签没有渲染完成，设置css不显示
+    -->
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<div id="app">
+    <p ref="content">弹出框内容</p>
+    <button @click="hint">提示</button>
+    <p v-cloak>{{msg}}</p>
+</div>
 </body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello world"
+        },
+        methods: {
+            hint() {
+                alert(this.$refs.content.innerHTML)
+            }
+        }
+    });
+</script>
 </html>
